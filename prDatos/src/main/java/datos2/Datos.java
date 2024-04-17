@@ -1,6 +1,5 @@
 package datos2;
 
-import datos.DatosException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,7 @@ public class Datos {
             }
         }
     }
-    public double calcMedia(){
+    public double calcMedia() throws DatosException {
         double aux = 0;
         int elms_good = 0;
         for(int i = 0; i<datos.size(); i++){
@@ -35,11 +34,11 @@ public class Datos {
             }
         }
         if(aux==0){
-            throw new datos.DatosException("No hay datos en el rango especificado");
+            throw new DatosException("No hay datos en el rango especificado");
         }
         return aux/elms_good;
     }
-    public double calcDesvTipica(){
+    public double calcDesvTipica() throws DatosException{
         double media = calcMedia();
         double aux = 0;
         int elms_good = 0;
@@ -51,10 +50,10 @@ public class Datos {
         }
         return Math.sqrt(aux/elms_good);
     }
-    public void setRango(String s){
+    public void setRango(String s)throws DatosException{
         int indexOfChar=s.indexOf(';');
         if(indexOfChar<0){
-            throw new datos.DatosException("Error en los datos al establecer el rango");
+            throw new DatosException("Error en los datos al establecer el rango");
         }
         String num1 = s.substring(0, indexOfChar);
         String num2 = s.substring(indexOfChar+1);
@@ -64,7 +63,7 @@ public class Datos {
             this.min=aux;
             this.max=aux2;
         }catch(NumberFormatException e){
-            throw new datos.DatosException("Error en los datos al establecer el rango");
+            throw new DatosException("Error en los datos al establecer el rango");
         }
     }
     public List<Double> getDatos(){

@@ -3,7 +3,7 @@ import datos2.*;
 import java.util.Arrays;
 
 public class PruebaDatos2 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         if(args.length<3){
             System.out.println("Error, no hay valores suficientes");
             return;
@@ -19,11 +19,16 @@ public class PruebaDatos2 {
         String[] data = Arrays.copyOfRange(args, 2, args.length);
         Datos d1 = new Datos(data, min, max);
         System.out.println(d1);
-        d1.setRango("0;4");
-        System.out.println(d1);
+        try {
+            d1.setRango("0;4");
+            System.out.println(d1);
+        }catch (DatosException e){
+            System.out.println(d1);
+        }
         try{
             d1.setRango("15 25");
-        }catch(DatosException e){
+            System.out.println(d1);
+        }catch (DatosException e){
             System.out.println(e.getMessage());
         }
     }
